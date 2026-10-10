@@ -1,15 +1,22 @@
 # Mindustry v8 / build 160.5 port status
 
-This working copy has been retargeted from Mindustry v155.4 to v160.5 and its mod metadata now declares build 160 as the minimum version. The existing source code and restored assets are retained.
+This working copy targets Mindustry v8 build 160.5 and JDK 17. The workflow is located at `.github/workflows/build.yml`.
+
+## Ammo definition migration
+
+- Removed the obsolete `mindustry.type.ammo.ItemAmmoType` import from `UAWUnitTypes.java`.
+- Removed all 10 legacy `UnitType.ammoType = new ItemAmmoType(...)` assignments, which do not exist in the Mindustry v8 API.
+- Preserved unit weapon definitions, bullet types, and their `ammoMultiplier` values. These affect weapon/bullet behavior and should not be changed as a substitute for the removed unit-level ammo type.
+- Mindustry v8 does not expose the old unit-level `ammoType` field. Therefore, those legacy assignments cannot be translated one-for-one to a current field. Unit weapons use their configured bullet definitions; the old per-unit item restriction is not represented by this API.
 
 ## Build requirements
 
 - JDK 17
-- Gradle wrapper (downloads the configured Gradle distribution on first run)
-- Network access to resolve Mindustry, Arc, Jabel, and MultiCrafterLib dependencies
+- Gradle wrapper
+- Network access to resolve Mindustry, Arc, and MultiCrafterLib dependencies
 
-## Important validation note
+## Validation status
 
-The compile task could not be run in the editing environment because it could not resolve `services.gradle.org` (DNS/network unavailable). This means the API migration is not yet compile-verified. A v160.5 compile may reveal changed Mindustry/Arc APIs or a MultiCrafterLib compatibility issue; those must be fixed from the actual compiler diagnostics before this can be considered a working port.
+The uploaded GitHub Actions log reached `:compileJava` and reported API errors in unit ammo definitions, stat displays, and sound constants. This archive addresses the obsolete unit ammo import and assignments only; the other compiler errors still need to be fixed before a successful build can be expected.
 
-Run `./gradlew clean jar` on Linux/macOS or `gradlew.bat clean jar` on Windows with JDK 17. The current Gradle configuration intentionally uses Jabel and Java 8 bytecode output for broad Mindustry runtime compatibility while allowing Java 17 source syntax.
+Run `./gradlew clean build` with JDK 17. The port is not yet compile-verified.

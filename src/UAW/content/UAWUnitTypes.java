@@ -27,7 +27,6 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.graphics.Pal;
 import mindustry.type.*;
-import mindustry.type.ammo.ItemAmmoType;
 import mindustry.type.weapons.PointDefenseWeapon;
 import mindustry.world.meta.BlockFlag;
 
@@ -129,8 +128,6 @@ public class UAWUnitTypes {
 			accel = 0.04f;
 			drag = 0.016f;
 			rotateSpeed = 5.5f;
-
-			ammoType = new ItemAmmoType(Items.graphite);
 
 			circleTarget = true;
 			lowAltitude = true;
@@ -234,8 +231,6 @@ public class UAWUnitTypes {
 			accel = 0.08f;
 			drag = 0.03f;
 			rotateSpeed = 4.5f;
-
-			ammoType = new ItemAmmoType(Items.graphite);
 
 			circleTarget = true;
 			lowAltitude = true;
@@ -576,8 +571,6 @@ public class UAWUnitTypes {
 			drag = 0.016f;
 			rotateSpeed = 5.5f;
 
-			ammoType = new ItemAmmoType(UAWItems.cryogel);
-
 			faceTarget = true;
 			range = unitRange;
 
@@ -853,7 +846,6 @@ public class UAWUnitTypes {
 			range = unitRange;
 			maxRange = range;
 			faceTarget = false;
-			ammoType = new ItemAmmoType(Items.graphite, 2);
 
 			trailLength = 22;
 			waveTrailX = 7f;
@@ -986,8 +978,6 @@ public class UAWUnitTypes {
 			range = unitRange;
 			maxRange = range;
 			faceTarget = false;
-
-			ammoType = new ItemAmmoType(Items.graphite, 2);
 
 			trailLength = 35;
 			waveTrailX = 9f;
@@ -1276,7 +1266,6 @@ public class UAWUnitTypes {
 			faceTarget = false;
 			range = unitRange;
 			maxRange = range;
-			ammoType = new ItemAmmoType(Items.thorium, 2);
 
 			trailLength = 50;
 			waveTrailX = 18f;
@@ -1564,7 +1553,6 @@ public class UAWUnitTypes {
 			armor = 5f;
 			faceTarget = false;
 			maxRange = range = unitRange;
-			ammoType = new ItemAmmoType(Items.graphite, 2);
 
 			trailLength = 35;
 			waveTrailX = 40 * px;
@@ -1691,7 +1679,6 @@ public class UAWUnitTypes {
 			speed = 5.5f;
 			accel = 0.04f;
 			rotateSpeed = 1.5f;
-			ammoType = new ItemAmmoType(Items.graphite);
 
 			range = unitRange;
 
@@ -1839,7 +1826,6 @@ public class UAWUnitTypes {
 			speed = 4f;
 			accel = 0.04f;
 			rotateSpeed = 1.8f;
-			ammoType = new ItemAmmoType(Items.graphite);
 
 			range = unitRange;
 			maxRange = unitRange;
@@ -2034,7 +2020,6 @@ public class UAWUnitTypes {
 			speed = 4.5f;
 			accel = 0.04f;
 			rotateSpeed = 1.8f;
-			ammoType = new ItemAmmoType(Items.graphite);
 
 			range = unitRange;
 			maxRange = unitRange;
