@@ -25,7 +25,37 @@ import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
 
+
 public class UAWStatValues {
+
+    // Replacement for the vanilla ItemDisplay/LiquidDisplay widgets removed from
+    // the build-160 API. Keep these small and self-contained so the stat tables
+    // retain the item/liquid icon and quantity information.
+    private static Table itemDisplay(Item item, float amount, boolean displayName) {
+        Table out = new Table();
+        out.add(new Image(item.uiIcon)).size(iconSmall).padRight(3f);
+        if (Math.abs(amount - 1f) > 0.001f) {
+            out.add(Strings.autoFixed(amount, 2)).padRight(3f);
+        }
+        if (displayName) out.add(item.localizedName);
+        return out;
+    }
+
+    private static Table itemDisplayPerSecond(Item item, float amount, float timePeriod, boolean displayName) {
+        float perSecond = timePeriod <= 0f ? amount : amount * 60f / timePeriod;
+        Table out = itemDisplay(item, perSecond, displayName);
+        out.add("/s");
+        return out;
+    }
+
+    private static Table liquidDisplay(Liquid liquid, float amount, boolean perSecond) {
+        Table out = new Table();
+        out.add(new Image(liquid.uiIcon)).size(iconSmall).padRight(3f);
+        out.add(Strings.autoFixed(amount, 2)).padRight(3f);
+        if (perSecond) out.add("/s");
+        out.add(liquid.localizedName);
+        return out;
+    }
 
 	// region unedited
 	public static StatValue string(String value, Object... args) {
@@ -67,7 +97,7 @@ public class UAWStatValues {
 	}
 
 	public static StatValue liquid(Liquid liquid, float amount, boolean perSecond) {
-		return table -> table.add(new LiquidDisplay(liquid, amount, perSecond));
+		return table -> table.add(liquidDisplay(liquid, amount, perSecond));
 	}
 
 	public static StatValue liquids(Boolf<Liquid> filter, float amount, boolean perSecond) {
@@ -75,7 +105,7 @@ public class UAWStatValues {
 			Seq<Liquid> list = content.liquids().select(i -> filter.get(i) && i.unlockedNow() && !i.isHidden());
 
 			for (int i = 0; i < list.size; i++) {
-				table.add(new LiquidDisplay(list.get(i), amount, perSecond)).padRight(5);
+				table.add(liquidDisplay(list.get(i), amount, perSecond)).padRight(5);
 
 				if (i != list.size - 1) {
 					table.add("/");
@@ -91,7 +121,7 @@ public class UAWStatValues {
 	public static StatValue liquids(float timePeriod, boolean perSecond, LiquidStack... stacks) {
 		return table -> {
 			for (var stack : stacks) {
-				table.add(new LiquidDisplay(stack.liquid, stack.amount * (60f / timePeriod), perSecond)).padRight(5);
+				table.add(liquidDisplay(stack.liquid, stack.amount * (60f / timePeriod), perSecond)).padRight(5);
 			}
 		};
 	}
@@ -103,7 +133,7 @@ public class UAWStatValues {
 	public static StatValue items(boolean displayName, ItemStack... stacks) {
 		return table -> {
 			for (ItemStack stack : stacks) {
-				table.add(new ItemDisplay(stack.item, stack.amount, displayName)).padRight(5);
+				table.add(itemDisplay(stack.item, stack.amount, displayName)).padRight(5);
 			}
 		};
 	}
@@ -111,7 +141,7 @@ public class UAWStatValues {
 	public static StatValue items(float timePeriod, ItemStack... stacks) {
 		return table -> {
 			for (ItemStack stack : stacks) {
-				table.add(new ItemDisplay(stack.item, stack.amount, timePeriod, true)).padRight(5);
+				table.add(itemDisplayPerSecond(stack.item, stack.amount, timePeriod, true)).padRight(5);
 			}
 		};
 	}
@@ -127,7 +157,7 @@ public class UAWStatValues {
 			for (int i = 0; i < list.size; i++) {
 				Item item = list.get(i);
 
-				table.add(timePeriod <= 0 ? new ItemDisplay(item) : new ItemDisplay(item, 1, timePeriod, true)).padRight(5);
+				table.add(timePeriod <= 0 ? itemDisplay(item, 1f, false) : itemDisplayPerSecond(item, 1f, timePeriod, true)).padRight(5);
 
 				if (i != list.size - 1) {
 					table.add("/");
@@ -331,9 +361,9 @@ public class UAWStatValues {
 					c.table(Styles.grayPanel, b -> {
 						for (ItemStack stack : items) {
 							if (timePeriod < 0) {
-								b.add(new ItemDisplay(stack.item, stack.amount, true)).pad(20f).left();
+								b.add(itemDisplay(stack.item, stack.amount, true)).pad(20f).left();
 							} else {
-								b.add(new ItemDisplay(stack.item, stack.amount, timePeriod, true)).pad(20f).left();
+								b.add(itemDisplayPerSecond(stack.item, stack.amount, timePeriod, true)).pad(20f).left();
 							}
 							if (items.length > 1) b.row();
 						}

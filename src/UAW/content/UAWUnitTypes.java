@@ -182,7 +182,7 @@ public class UAWUnitTypes {
 					x = 24 * px;
 					y = -14 * px;
 					reload = 1.5f * tick;
-					shootSound = Sounds.missileSmall;
+					shootSound = Sounds.shoot;
 					recoil = 0.75f;
 
 					shoot = new ShootPattern() {{
@@ -287,7 +287,7 @@ public class UAWUnitTypes {
 				recoil = 2f;
 				shake = 2f;
 				ejectEffect = Fx.casing3;
-				shootSound = Sounds.shootBig;
+				shootSound = Sounds.shoot;
 				shoot.shots = 4;
 				inaccuracy = 6f;
 				shoot.shotDelay = 5f;
@@ -303,7 +303,7 @@ public class UAWUnitTypes {
 					shootEffect = Fx.shootBigColor;
 					smokeEffect = Fx.shootBigSmoke;
 					hitEffect = new MultiEffect(Fx.blastExplosion, Fx.flakExplosionBig);
-					hitSound = Sounds.boom;
+					hitSound = Sounds.explosion;
 					frontColor = UAWPal.surgeFront;
 					backColor = UAWPal.surgeBack;
 					splashDamage = 16f;
@@ -345,7 +345,7 @@ public class UAWUnitTypes {
 						rotateSpeed = 6f;
 						trailLength = 9;
 						missileAccelTime = 35f;
-						deathSound = Sounds.largeExplosion;
+						deathSound = Sounds.explosionReactor;
 
 						weapons.add(new SuicideWeapon() {{
 							float splashRad = 6 * tilesize;
@@ -448,7 +448,7 @@ public class UAWUnitTypes {
 				x = px(41);
 				y = px(51);
 				reload = 7.5f;
-				shootSound = Sounds.shootBig;
+				shootSound = Sounds.shoot;
 				ejectEffect = Fx.casing2;
 
 				float bulletDamage = 70;
@@ -537,7 +537,7 @@ public class UAWUnitTypes {
 
 						missileAccelTime = 35f;
 						lifetime = missileLifetime(unitRange * 1.25f, this.speed, this.missileAccelTime);
-						deathSound = Sounds.largeExplosion;
+						deathSound = Sounds.explosionReactor;
 						range = maxRange = tilesize;
 
 						weapons.add(new SuicideWeapon() {{
@@ -781,7 +781,7 @@ public class UAWUnitTypes {
 				inaccuracy = 12f;
 				shootCone = 180f;
 
-				shootSound = Sounds.missileLaunch;
+				shootSound = Sounds.shoot;
 
 				maxRange = unitRange;
 
@@ -806,7 +806,7 @@ public class UAWUnitTypes {
 						lifetime = unitRange * 1.8f / this.speed;
 
 						trailColor = exhaustColor = UAWPal.cryoBack;
-						deathSound = Sounds.largeExplosion;
+						deathSound = Sounds.explosionReactor;
 
 						weapons.add(new SuicideWeapon() {{
 							float splashRad = 4 * tilesize;
@@ -1031,7 +1031,7 @@ public class UAWUnitTypes {
 						targetAir = false;
 
 						missileAccelTime = 2 * tick;
-						deathSound = Sounds.largeExplosion;
+						deathSound = Sounds.explosionReactor;
 
 						lifetime = missileLifetime(unitRange, this.speed, missileAccelTime);
 
@@ -1316,7 +1316,7 @@ public class UAWUnitTypes {
 				y = 2.5f;
 				inaccuracy = 16f;
 				reload = 15f;
-				shootSound = Sounds.shootBig;
+				shootSound = Sounds.shoot;
 				ejectEffect = Fx.casing2;
 				bullet = new FlakBulletType(8f, 15) {{
 					splashDamage = 30;
@@ -1437,7 +1437,7 @@ public class UAWUnitTypes {
 						particleColor = Pal.suppress;
 						particleEffect = new MultiEffect(Fx.sporeSlowed, Fx.hitBulletColor);
 						makeFire = true;
-						applySound = Sounds.flame2;
+						applySound = Sounds.loopFire;
 					}};
 				}};
 				float barrelMoveY = -10f;
@@ -1646,7 +1646,7 @@ public class UAWUnitTypes {
 				}};
 				inaccuracy = 5f;
 				velocityRnd = 0.1f;
-				shootSound = Sounds.missile;
+				shootSound = Sounds.shoot;
 				ejectEffect = Fx.none;
 				bullet = new MissileBulletType(5f, 60) {{
 					height = 12;
@@ -1900,7 +1900,7 @@ public class UAWUnitTypes {
 					recoil = 1.2f;
 					inaccuracy = 12f;
 
-					shootSound = Sounds.shootBig;
+					shootSound = Sounds.shoot;
 					soundPitchMin = 0.4f;
 					soundPitchMax = 0.7f;
 					ejectEffect = Fx.casing2;
@@ -1935,7 +1935,7 @@ public class UAWUnitTypes {
 					inaccuracy = 12f;
 					shootCone = 270f / 2f;
 
-					shootSound = Sounds.missileLaunch;
+					shootSound = Sounds.shoot;
 					ejectEffect = Fx.casing1;
 
 					shoot = new ShootAlternate() {{
@@ -1959,7 +1959,7 @@ public class UAWUnitTypes {
 							exhaustColor = Pal.bulletYellowBack;
 
 							missileAccelTime = 35f;
-							deathSound = Sounds.largeExplosion;
+							deathSound = Sounds.explosionReactor;
 
 							weapons.add(new SuicideWeapon() {{
 								bullet = new ExplosionBulletType(health * 0.85f, 6 * tilesize) {{
@@ -2095,7 +2095,7 @@ public class UAWUnitTypes {
 					recoil = 1.2f;
 					inaccuracy = 12f;
 
-					shootSound = Sounds.shootBig;
+					shootSound = Sounds.shoot;
 					soundPitchMin = 0.4f;
 					soundPitchMax = 0.7f;
 					ejectEffect = Fx.casing2;
@@ -2122,7 +2122,7 @@ public class UAWUnitTypes {
 					inaccuracy = 12f;
 					shootCone = 360;
 
-					shootSound = Sounds.missileLaunch;
+					shootSound = Sounds.shoot;
 					ejectEffect = Fx.casing1;
 
 					shoot = new ShootAlternate() {{
@@ -2147,7 +2147,7 @@ public class UAWUnitTypes {
 							exhaustColor = Pal.bulletYellowBack;
 
 							missileAccelTime = 35f;
-							deathSound = Sounds.largeExplosion;
+							deathSound = Sounds.explosionReactor;
 
 							weapons.add(new SuicideWeapon() {{
 								bullet = new ExplosionBulletType(health * 0.8f, 6 * tilesize) {{

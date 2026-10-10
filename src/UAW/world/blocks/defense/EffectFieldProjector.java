@@ -26,7 +26,7 @@
 //		lightRadius = 50f;
 //		shootCone = 360;
 //		loopSound = Sounds.shield;
-//		shootSound = Sounds.plasmaboom;
+//		shootSound = Sounds.explosion;
 //		logicConfigurable = canOverdrive = rotate = extinguish = false;
 //	}
 //
