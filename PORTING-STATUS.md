@@ -28,3 +28,9 @@ Run `./gradlew clean build` with JDK 17. The port is not yet compile-verified.
 - Replaced removed `ItemDisplay` and `LiquidDisplay` UI classes in `UAWStatValues` with local table-based display helpers that show content icons, quantities, names, and per-second labels.
 - The GitHub Actions log did not show remaining unit `ammoType` errors in this run. Unit ammunition behavior still requires gameplay review because the old `UnitType.ammoType` assignments were removed.
 - These changes have not yet been verified by a successful Gradle build. Run the workflow again and use the next compiler output to continue the port.
+
+
+## Compatibility pass 3
+
+- Replaced the remaining unavailable `Sounds.artillery` reference in `UAWUnitTypes.java` with the available `Sounds.shoot` fallback, based on the latest GitHub Actions compiler output.
+- The latest build log reported only this missing sound symbol at this stage. Re-run the workflow to reveal any subsequent errors; this is not yet a verified successful build.

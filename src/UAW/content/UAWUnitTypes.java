@@ -2190,7 +2190,7 @@ public class UAWUnitTypes {
 					inaccuracy = 12f;
 					shootCone = 180;
 
-					shootSound = Sounds.artillery;
+					shootSound = Sounds.shoot;
 					ejectEffect = Fx.casing2;
 
 					shoot = new ShootAlternate() {{
